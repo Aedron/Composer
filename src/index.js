@@ -22,5 +22,4 @@ export default function (config) {
 
 function handleEdit(e) {
     this.rawData = parser(e.target)
-    console.log(this.rawData)
 }
