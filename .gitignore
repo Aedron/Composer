@@ -67,12 +67,6 @@ typings/
 .env
 
 
-.gitignore
+
 .idea/
-dist/
-package.json
-src/
-static/
-webpack.config.js
-yarn.lock
-!/.gitignore
+
