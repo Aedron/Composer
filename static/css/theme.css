@@ -1,9 +1,39 @@
-.composeContainer {
-  width: 80%;
-  margin: 50px 10% 0 10%; }
+/*
+Error: The line was indented 2 levels deeper than the previous line.
+        on line 6 of theme.sass
 
-.h2 {
-  font-size: 20px;
-}
+1: 
+2: *
+3:   font-size: 10px
+4: 
+5: .composeContainer
+6:     width: 80%
+7:     margin: 50px 10% 0 10%
+8: 
+9:     .h1, .h2, .h3, .h4, .h5
+10:       font-weight: bold
+11: 
 
-/*# sourceMappingURL=theme.css.map */
+Backtrace:
+theme.sass:6
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/engine.rb:520:in `tree'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/engine.rb:409:in `_to_tree'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/engine.rb:298:in `render_with_sourcemap'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:209:in `each'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/plugin.rb:82:in `update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/exec/base.rb:52:in `parse'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/lib/sass/exec/base.rb:19:in `parse!'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.24/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: The line was indented 2 levels deeper than the previous line.\A         on line 6 of theme.sass\A \A 1: \A 2: *\A 3:   font-size: 10px\A 4: \A 5: .composeContainer\A 6:     width: 80%\A 7:     margin: 50px 10% 0 10%\A 8: \A 9:     .h1, .h2, .h3, .h4, .h5\A 10:       font-weight: bold\A 11: "; }
