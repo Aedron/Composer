@@ -1,5 +1,5 @@
 
-import parser from './lib/parser';
+import parser from './parser';
 
 
 const log = console.log
@@ -19,7 +19,6 @@ export default function (config) {
     this.dom = editor
     this.rawData = parser(this.dom)
     this.dom.focus()
-    console.log(this)
     // Object.defineProperties(this, {
     //     rawData: {
     //         get: () => parser(this.dom)

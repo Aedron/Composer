@@ -4,6 +4,9 @@
 .composeContainer {
   width: 80%;
   margin: 50px 10% 0 10%; }
+  .composeContainer > div span.tag {
+    color: red;
+    font-size: 1em; }
   .composeContainer .h1, .composeContainer .h2, .composeContainer .h3, .composeContainer .h4, .composeContainer .h5 {
     font-weight: bold; }
   .composeContainer .h1 {
