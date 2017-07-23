@@ -16,7 +16,15 @@ export default function (config) {
     editor.addEventListener("input", this::handleEdit)
     document.querySelector(config.el).appendChild(editor)
 
-    this.rawData = parser(editor)
+    this.dom = editor
+    this.rawData = parser(this.dom)
+    this.dom.focus()
+    console.log(this)
+    // Object.defineProperties(this, {
+    //     rawData: {
+    //         get: () => parser(this.dom)
+    //     }
+    // });
 }
 
 

@@ -1,5 +1,5 @@
 * {
-  font-size: 10px; }
+  font-size: 14px; }
 
 .composeContainer {
   width: 80%;
@@ -10,5 +10,13 @@
     font-size: 2.5em; }
   .composeContainer .h2 {
     font-size: 2.2em; }
+  .composeContainer .h3 {
+    font-size: 1.9em; }
+  .composeContainer .h4 {
+    font-size: 1.6em; }
+  .composeContainer .h5 {
+    font-size: 1.3em; }
+  .composeContainer .h6 {
+    font-size: 1em; }
 
 /*# sourceMappingURL=theme.css.map */

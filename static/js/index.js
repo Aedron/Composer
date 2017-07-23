@@ -1,9 +1,12 @@
 
-import Compose from '../../src/index'
+import Composer from '../../src/index'
 
 
-const compose = new Compose({
+const composer = new Composer({
     el: '#editor'
 })
+
+
+window.composer = composer
 
 
