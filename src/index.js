@@ -14,7 +14,7 @@ export default function (config) {
     editor.className = 'composeContainer'
     editor.contentEditable = true
     editor.addEventListener("input", this::handleEdit)
-    document.querySelector(config.el).appendChild(editor)
+    config.el.appendChild(editor)
 
     this.dom = editor
     this.rawData = parser(this.dom)
