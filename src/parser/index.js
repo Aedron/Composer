@@ -1,17 +1,26 @@
 
-import position from '../lib/cursorPositionLib'
-
-
-export default function (dom) {
-    if (dom.innerHTML === '') return (dom.innerHTML = '<div><br/></div>')
-    const pos = position.get(dom)
-    console.log(pos)
-    const data = Array.from(dom.children)
-    data.forEach(parserLine)
-    position.set(dom, pos)
-    return dom
+export default function (innerHTML) {
+    return innerHTML === '' ?
+        '<div><br/></div>' :
+        parser(innerHTML)
 }
 
+
+
+function parser(html) {
+    html = html
+        .replace(/<div(\s|.)*?\>/g, '')
+        .replace(/<br\>/, '')
+        .split(/<\/div\>/)
+        // .split(/<br\>/)
+    console.log(html)
+    // return html
+}
+
+
+function splitLine() {
+
+}
 
 
 function parserLine(line) {

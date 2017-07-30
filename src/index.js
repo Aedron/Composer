@@ -1,10 +1,11 @@
 
 import parser from './parser';
+import position from '../src/lib/cursorPositionLib'
+
 
 
 const log = console.log
 const err = e => { throw new Error(e) }
-
 
 
 export default function (config) {
@@ -17,7 +18,8 @@ export default function (config) {
     config.el.appendChild(editor)
 
     this.dom = editor
-    this.rawData = parser(this.dom)
+    parser(this.dom.innerHTML)
+    // this.dom.innerHTML = parser(this.dom.innerHTML)
     this.dom.focus()
     // Object.defineProperties(this, {
     //     rawData: {
@@ -27,6 +29,9 @@ export default function (config) {
 }
 
 
-function handleEdit(e) {
-    this.rawData = parser(e.target)
+function handleEdit() {
+    parser(this.dom.innerHTML)
+    // const pos = position.get(this.dom)
+    // this.dom.innerHTML = parser(this.dom.innerHTML)
+    // position.set(this.dom, pos)
 }
