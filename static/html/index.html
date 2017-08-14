@@ -8,18 +8,10 @@
     <link type="text/css" rel="stylesheet" href="../css/fonts.css"/>
 </head>
 <body>
+    <div id="root"></div>
+
+
     <!--<script type="text/javascript" src="http://localhost:8080/assets/index.build.js"></script>-->
-    <!--<script type="text/javascript" src="../../dist/index.build.js"></script>-->
-
-    <div id="test" contenteditable="true">
-        Hello!
-    </div>
-
-    <script>
-        window.addEventListener('keydown', function () {
-            const range  = window.getSelection().selObj.getRangeAt(0)
-            console.log(range.startOffset)
-        })
-    </script>
+    <script type="text/javascript" src="../../static/js/index.js"></script>
 </body>
 </html>
