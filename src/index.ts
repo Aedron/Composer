@@ -25,8 +25,8 @@ export default function (el: HTMLElement, config?: Config) {
         }
     })
 
-    window.composer = this
-    !window.$ && (window.$ = this)
+    Object.defineProperty(window,'composer', this)
+    !window.hasOwnProperty('$') && Object.defineProperty(window,'$', this)
 }
 
 

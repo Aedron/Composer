@@ -20,8 +20,8 @@ function default_1(el, config) {
             this.range.setStart(v);
         }
     });
-    window.composer = this;
-    !window.$ && (window.$ = this);
+    Object.defineProperty(window, 'composer', this);
+    !window.hasOwnProperty('$') && Object.defineProperty(window, '$', this);
 }
 exports.default = default_1;
 function handleEdit(e) {
