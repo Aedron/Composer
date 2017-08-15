@@ -1,44 +1,51 @@
 
+import parse from './parser/index.ts'
+
+
 interface Config {
     el: HTMLElement
 }
 
 export default function (el: HTMLElement, config?: Config) {
-    console.log('f')
     const content = document.createElement('div')
-    content.contentEditable = 'true'
     content.innerHTML = 'Edit Here...'
+    el.contentEditable = 'true'
     el.appendChild(content)
     content.focus()
-    window.addEventListener('keupress', handleEdit.bind(this))
+    window.addEventListener('input', handleChange.bind(this))
 
     this.dom = el
-    this.focusDom = content
-    Object.defineProperty(this, 'range', {
-        get: () => window.getSelection()['selObj']
+    Object.defineProperty(this, 'selection', {
+        get: () => window.getSelection()
     })
     Object.defineProperty(this, 'curPos', {
-        get: function() {
-            return this.range.getRangeAt(0)
-        },
-        set: function(v) {
-            this.range.setStart(v)
+        get: () => this.selection.getRangeAt(0).endOffset,
+        set: v => {
+            for (let node of this.focusDom.childNodes)
+                v >= node.length ?
+                    v -= node.length :
+                    this.selection.getRangeAt(0).setStart(this.focusDom, v)
         }
     })
-
-    Object.defineProperty(window,'composer', this)
-    !window.hasOwnProperty('$') && Object.defineProperty(window,'$', this)
+    Object.defineProperty(this, 'focusNode', {
+        get: () => this.selection.focusNode
+    })
+    Object.defineProperty(this, 'focusDom', {
+        get: () => {
+            let dom = this.focusNode.parentElement;
+            while (dom.parentElement !== this.dom)
+                dom = dom.parentElement
+            return dom
+        }
+    })
 }
 
 
-function handleEdit(e) {
-    console.log(e)
-}
-
-function appendLine() {
-
-}
-
-function handleEditLine(e) {
-
+function handleChange() {
+    if (this.focusDom.innerHTML === '<br>') return
+    else {
+        const curPos = this.curPos
+        parse(this.focusDom)
+        this.curPos = curPos
+    }
 }
