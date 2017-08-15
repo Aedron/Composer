@@ -1,9 +1,10 @@
 
 interface Config {
-
+    el: HTMLElement
 }
 
 export default function (el: HTMLElement, config?: Config) {
+    console.log('f')
     const content = document.createElement('div')
     content.contentEditable = 'true'
     content.innerHTML = 'Edit Here...'
@@ -14,7 +15,7 @@ export default function (el: HTMLElement, config?: Config) {
     this.dom = el
     this.focusDom = content
     Object.defineProperty(this, 'range', {
-        get: () => window.getSelection().selObj
+        get: () => window.getSelection()['selObj']
     })
     Object.defineProperty(this, 'curPos', {
         get: function() {

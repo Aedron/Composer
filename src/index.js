@@ -1,6 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-function default_1(el, config) {
+export default function (el, config) {
+    console.log('f');
     var content = document.createElement('div');
     content.contentEditable = 'true';
     content.innerHTML = 'Edit Here...';
@@ -10,7 +9,7 @@ function default_1(el, config) {
     this.dom = el;
     this.focusDom = content;
     Object.defineProperty(this, 'range', {
-        get: function () { return window.getSelection().selObj; }
+        get: function () { return window.getSelection()['selObj']; }
     });
     Object.defineProperty(this, 'curPos', {
         get: function () {
@@ -23,7 +22,6 @@ function default_1(el, config) {
     Object.defineProperty(window, 'composer', this);
     !window.hasOwnProperty('$') && Object.defineProperty(window, '$', this);
 }
-exports.default = default_1;
 function handleEdit(e) {
     console.log(e);
 }
@@ -31,3 +29,4 @@ function appendLine() {
 }
 function handleEditLine(e) {
 }
+//# sourceMappingURL=index.js.map
