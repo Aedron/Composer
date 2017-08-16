@@ -1,5 +1,5 @@
 
-import parse from './parser/index.ts'
+import parse from './parser/index'
 
 
 interface Config {
@@ -15,6 +15,21 @@ export default function (el: HTMLElement, config?: Config) {
     window.addEventListener('input', handleChange.bind(this))
 
     this.dom = el
+    injectProps.bind(this)()
+}
+
+
+function handleChange() {
+    if (this.focusDom.innerHTML === '<br>') return
+    else {
+        const curPos = this.curPos
+        parse(this.focusDom)
+        this.curPos = curPos
+    }
+}
+
+
+function injectProps() {
     Object.defineProperty(this, 'selection', {
         get: () => window.getSelection()
     })
@@ -38,14 +53,4 @@ export default function (el: HTMLElement, config?: Config) {
             return dom
         }
     })
-}
-
-
-function handleChange() {
-    if (this.focusDom.innerHTML === '<br>') return
-    else {
-        const curPos = this.curPos
-        parse(this.focusDom)
-        this.curPos = curPos
-    }
 }

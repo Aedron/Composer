@@ -3,5 +3,10 @@ import Composer from '../../src/index.ts'
 
 
 const composer = new Composer(document.getElementById('root'))
-window.$ = window.composer = composer
+Object.defineProperty(window, '$', {
+    value: composer
+})
+Object.defineProperty(window, 'composer', {
+    value: composer
+})
 console.log(composer)

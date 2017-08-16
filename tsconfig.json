@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "module": "es2015",
+    "module": "es6",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true,
-    "target": "es5"
+    "sourceMap": true
   },
   "files": [
-    "src/index.ts"
+    "src/index.ts",
+    "static/js/index.ts"
   ]
 }

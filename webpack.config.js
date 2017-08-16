@@ -1,9 +1,9 @@
-const path = require('path')
 
+const path = require('path')
 
 module.exports = {
     entry: {
-        index: path.join(__dirname, './static/js/index.js'),
+        index: path.join(__dirname, './static/js/index.ts'),
     },
     output: {
         path: path.join(__dirname, './static/dist/'),
@@ -23,8 +23,7 @@ module.exports = {
                                 "browsers": ["last 2 versions", "safari >= 7"]
                             }
                         }]
-                    ],
-                    "plugins": ["transform-function-bind"]
+                    ]
                 }
             },
             {
