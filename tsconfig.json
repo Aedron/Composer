@@ -8,6 +8,7 @@
   },
   "files": [
     "src/index.ts",
+    "src/parser/index.ts",
     "static/js/index.ts"
   ]
 }

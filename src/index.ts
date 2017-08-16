@@ -1,5 +1,5 @@
 
-import parse from './parser/index'
+import parse from './parser/index.ts'
 
 
 interface Config {
@@ -31,15 +31,26 @@ function handleChange() {
 
 function injectProps() {
     Object.defineProperty(this, 'selection', {
-        get: () => window.getSelection()
+        get: () => this.dom.focus() || window.getSelection()
     })
     Object.defineProperty(this, 'curPos', {
-        get: () => this.selection.getRangeAt(0).endOffset,
+        get: () => {
+            let offset = 0;
+            const nodes = this.focusDom.childNodes;
+            for (let node of nodes) {
+                if (node === this.focusNode)
+                    return offset + this.selection.getRangeAt(0).endOffset
+                else offset += (node.innerText || node).length
+            }
+            return offset
+        },
         set: v => {
-            for (let node of this.focusDom.childNodes)
-                v >= node.length ?
-                    v -= node.length :
+            for (let node of this.focusDom.childNodes) {
+                const length = (node.innerText || node).length
+                if (v <= length)
                     this.selection.getRangeAt(0).setStart(this.focusDom, v)
+                else v -= length
+            }
         }
     })
     Object.defineProperty(this, 'focusNode', {
@@ -47,7 +58,7 @@ function injectProps() {
     })
     Object.defineProperty(this, 'focusDom', {
         get: () => {
-            let dom = this.focusNode.parentElement;
+            let dom = this.focusNode;
             while (dom.parentElement !== this.dom)
                 dom = dom.parentElement
             return dom
