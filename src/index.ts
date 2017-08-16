@@ -9,6 +9,7 @@ interface Config {
 export default function (el: HTMLElement, config?: Config) {
     const content = document.createElement('div')
     content.innerHTML = 'Edit Here...'
+    el.className = el.className ? `${el.className} composeContainer` : 'composeContainer'
     el.contentEditable = 'true'
     el.appendChild(content)
     content.focus()
@@ -45,10 +46,17 @@ function injectProps() {
             return offset
         },
         set: v => {
+            const range = document.createRange()
             for (let node of this.focusDom.childNodes) {
                 const length = (node.innerText || node).length
-                if (v <= length)
-                    this.selection.getRangeAt(0).setStart(this.focusDom, v)
+                console.log(v, length)
+                if (v < length) {
+                    range.setStart(this.focusNode, v)
+                    range.collapse(true)
+                    this.selection.removeAllRanges()
+                    this.selection.addRange(range)
+                    return this.dom.focus()
+                } else if (v === length) v = 0
                 else v -= length
             }
         }
