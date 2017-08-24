@@ -1,10 +1,11 @@
 
 export default function (line: HTMLElement) {
-    parserH(line)
+    parseH(line)
+    parseHr(line)
 }
 
 
-function parserH(line: HTMLElement) {
+function parseH(line: HTMLElement) {
     const r = /^#+\s/;
     const s = line.innerHTML
         .replace(/nbsp;/g, ' ')
@@ -13,8 +14,12 @@ function parserH(line: HTMLElement) {
     const result = r.exec(s)
     if (!result) return line.className = ''
     const tag = result[0]
-    // console.log(tag)
 
     line.className = `h${tag.length - 1}`
     line.innerHTML = s.replace(tag, `<span class="tag">${tag}</span>`)
+}
+
+function parseHr(line: HTMLElement) {
+    if (line.innerHTML === '***')
+        line.className = 'hr'
 }
