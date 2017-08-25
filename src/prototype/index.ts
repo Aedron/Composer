@@ -4,11 +4,29 @@ export default function () {
         get: () => this.dom.focus() || window.getSelection()
     })
 
+    Object.defineProperty(this, 'focusNode', {
+        get: () => {
+            let node = this.selection.focusNode
+            if (node.parentElement.parentElement === this.dom) return node;
+            while (node.parentElement !== this.focusDom)
+                node = node.parentElement
+            return node
+        }
+    })
+
+    Object.defineProperty(this, 'focusDom', {
+        get: () => {
+            let dom = this.selection.focusNode
+            while (dom.parentElement !== this.dom)
+                dom = dom.parentElement
+            return dom
+        }
+    })
 
     Object.defineProperty(this, 'curPos', {
         get: () => {
-            let offset = 0;
-            const nodes = this.focusDom.childNodes;
+            let offset = 0
+            const nodes = this.focusDom.childNodes
             for (let node of nodes) {
                 if (node === this.focusNode)
                     return offset + this.selection.getRangeAt(0).endOffset
@@ -28,20 +46,6 @@ export default function () {
         }
     })
 
-
-    Object.defineProperty(this, 'focusNode', {
-        get: () => this.selection.focusNode
-    })
-
-
-    Object.defineProperty(this, 'focusDom', {
-        get: () => {
-            let dom = this.focusNode;
-            while (dom.parentElement !== this.dom)
-                dom = dom.parentElement
-            return dom
-        }
-    })
 }
 
 
