@@ -36,10 +36,11 @@ export default function () {
         },
         set: v => {
             for (let node of this.focusDom.childNodes) {
+                if (node.innerHTML) node = node.childNodes[0]
                 const length = (node.innerText || node).length
                 if (v < length)
                     _setPos.bind(this)(node, v)
-                else if (v === length) v = 0
+                // else if (v === length) v = 0
                 else v -= length
             }
             return this.dom.focus()
@@ -50,6 +51,8 @@ export default function () {
 
 
 function _setPos(node: Node, pos: number) {
+    console.log(node)
+    console.log(pos)
     const range = document.createRange()
     range.setStart(node, pos)
     range.collapse(true)

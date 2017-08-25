@@ -32,10 +32,7 @@ function handleKeyUp() {
     if (this.focusDom.innerHTML === '<br>') return this.lastCurPos = null;
     else {
         const pos = this.curPos;
-        console.log('pos: ', pos)
         parse(this.focusDom)
         this.curPos = pos;
-        // this.lastCurPos && (this.curPos = this.lastCurPos);
-        // this.lastCurPos = null;
     }
 }
