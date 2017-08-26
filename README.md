@@ -1,2 +1,2 @@
 # Composer (Working...)
-✍ An Wysiwyg Markdown Editor
+✍ A Wysiwyg Markdown Editor
