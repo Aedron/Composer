@@ -14,7 +14,6 @@ export default function (el: HTMLElement, config?: Config) {
     el.contentEditable = 'true'
     el.appendChild(content)
     content.focus()
-    // window.addEventListener('keydown', handleKeyDown.bind(this))
     window.addEventListener('input', handleKeyUp.bind(this))
 
     this.dom = el
@@ -23,16 +22,22 @@ export default function (el: HTMLElement, config?: Config) {
 }
 
 
-function handleKeyDown(e) {
-    if (e.keyCode >= 37 && e.keyCode <= 40) return;
-    this.lastCurPos = this.curPos;
-}
-
 function handleKeyUp() {
-    if (this.focusDom.innerHTML === '<br>') return this.lastCurPos = null;
+    if (checkEmpty(this.dom)) return
     else {
         const pos = this.curPos;
         parse(this.focusDom)
         this.curPos = pos;
+    }
+}
+
+function checkEmpty(dom: HTMLElement) {
+    Array.from(dom.children).forEach(d => {
+        if (d.innerHTML === '' || d.innerHTML === '')
+            dom.removeChild(d)
+    })
+    if (dom.innerHTML === '' || dom.innerHTML === '<br>') {
+        dom.innerHTML = '<br>'
+        dom.focus()
     }
 }
