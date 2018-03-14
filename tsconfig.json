@@ -5,11 +5,6 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "target": "esnext"
-  },
-  "files": [
-    "src/index.ts",
-    "src/parser/index.ts",
-    "static/js/index.ts"
-  ]
+    "target": "es5"
+  }
 }
